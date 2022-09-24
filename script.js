@@ -1,6 +1,7 @@
 let choices = ['Rock', 'Paper', 'Scissors'];
 let playerWins = 0;
 let computerWins = 0;
+let running = true;
 
 function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
@@ -42,12 +43,17 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+function checkGameState() {
+   (playerWins === 5 || computerWins === 5) ? running = false : running = true;
+}
+
 function game() {
-    for (let i = 0; i < 5; i++) {
+    while (running) {
         const playerSelection = prompt('Choose Rock, Paper or Scissors');
         const computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
-        console.log(`${playerWins} - ${computerWins}`)
+        console.log(`${playerWins} - ${computerWins}`);
+        checkGameState();
     }
 }
 
