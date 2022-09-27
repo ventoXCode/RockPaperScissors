@@ -13,12 +13,10 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {
         playerWins++;
         return 'You Win! Rock beats Scissors';
-    }
-    else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
+    } else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
         playerWins++;
         return 'You Win! Paper beats Rock';
-    }
-    else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
+    } else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
         playerWins++;
         return 'You Win! Scissors beats Paper';
     }
@@ -32,19 +30,17 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {
         computerWins++;
         return 'You Lose! Rock beats Scissors';
-    }
-    else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
+    } else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
         computerWins++;
         return 'You Lose! Paper beats Rock';
-    }
-    else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
+    } else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
         computerWins++;
         return 'You Lose! Scissors beats Paper';
     }
 }
 
 function checkGameState() {
-   (playerWins === 5 || computerWins === 5) ? running = false : running = true;
+    (playerWins === 5 || computerWins === 5) ? running = false : running = true;
 }
 
 function game() {
