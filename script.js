@@ -7,7 +7,8 @@ function getComputerChoice() {
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelection) {
+    const computerSelection = getComputerChoice();
 
     // Wins
     if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {
@@ -18,12 +19,12 @@ function playRound(playerSelection, computerSelection) {
         return 'You Win! Paper beats Rock';
     } else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
         playerWins++;
-        return 'You Win! Scissors beats Paper';
+        return 'You Win! Scissors beat Paper';
     }
 
     // Draws
     if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-        return `Draw! ${playerSelection} and ${computerSelection} are the same choices`;
+        return `Draw! Both chose ${playerSelection}`;
     }
 
     // Losses
@@ -35,22 +36,44 @@ function playRound(playerSelection, computerSelection) {
         return 'You Lose! Paper beats Rock';
     } else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
         computerWins++;
-        return 'You Lose! Scissors beats Paper';
+        return 'You Lose! Scissors beat Paper';
     }
 }
 
-function checkGameState() {
-    (playerWins === 5 || computerWins === 5) ? running = false : running = true;
-}
-
-function game() {
-    while (running) {
-        const playerSelection = prompt('Choose Rock, Paper or Scissors');
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log(`${playerWins} - ${computerWins}`);
-        checkGameState();
+function declareWinner () {
+    if (playerWins === 5) {
+        playerWins = 0;
+        computerWins = 0;
+        return 'You Win';
+    } else if (computerWins === 5) {
+        playerWins = 0;
+        computerWins = 0;
+        return 'The Computer Wins!'
     }
 }
 
-game();
+// functioning the buttons
+const result = document.querySelector('.results');
+const score = document.querySelector('.score');
+const winner = document.querySelector('.winner');
+
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', () => {
+    result.textContent = playRound('Rock');
+    score.textContent = `${playerWins} - ${computerWins}`;
+    winner.textContent = declareWinner();
+});
+
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', () => {
+    result.textContent = playRound('Paper');
+    score.textContent = `${playerWins} - ${computerWins}`;
+    winner.textContent = declareWinner();
+});
+
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', () => {
+    result.textContent = playRound('Scissors');
+    score.textContent = `${playerWins} - ${computerWins}`;
+    winner.textContent = declareWinner();
+});
